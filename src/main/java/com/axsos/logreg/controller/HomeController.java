@@ -131,7 +131,7 @@ public class HomeController {
             BindingResult result, Model model, HttpSession session) {
         if(result.hasErrors()) {
             model.addAttribute("service", new Service());
-            return "createservice.jsp";
+            return "/login/createJob.jsp";
         }
         Long user_id = (Long) session.getAttribute("user_id");
         User thisUser = userServ.findUserById(user_id);
