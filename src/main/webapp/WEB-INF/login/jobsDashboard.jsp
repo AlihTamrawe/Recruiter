@@ -60,9 +60,9 @@
 	            	       <c:if test="${service.status==true}">
 	    
 		                <tr>
-     			      		<td scope="row"><a href="/owner/dash/${service.owner.id}"><c:out value="${service.owner.firstName}"/></a> <a href="/user/card/${user.id }" >Details of about the Owner</a>
-     			      		</td>                	
-		                	<td scope="row"><c:out value="${service.location}"/></td>                	
+							<td scope="row"><a href="/owner/dash/${service.owner.id}"><c:out value="${service.owner.firstName}"/></a> <a href="/user/card/${user.id }" >Details of about the Owner</a>	</td>                	
+
+                            <td scope="row"><c:out value="${service.location}"/></td>                	
 		                    <td><c:out value="${service.description}"/></td>
 		                    <td><c:out value="${service.startingDate}"/></td> 
 		                    <td><c:out value="${service.finishingDate}"/></td> 

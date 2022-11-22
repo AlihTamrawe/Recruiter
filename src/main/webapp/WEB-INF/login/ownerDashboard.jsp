@@ -42,7 +42,11 @@
 
 </div>
 </div>
+
  <a href="/user/card/${user.id }" type="button" class="btn btn-outline-primary">Details of me</a>
+
+
+
 
 
 <c:forEach var="service" items="${ownerServices}">

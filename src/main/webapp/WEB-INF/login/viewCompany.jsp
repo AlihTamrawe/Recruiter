@@ -63,8 +63,12 @@
 
  <c:forEach var="company1" items="${user.getEmployeeCompanies()}">
 
+
         <p >Company Title :<c:out value="${company1.title}"></c:out> <a href="/getout/${company1.id }"> Leave</a>  		 <a href="/user/card/${company1.contractor.id }" >Details of Owner</a>
         </p>
+
+      
+
     	</c:forEach>
        
     	
