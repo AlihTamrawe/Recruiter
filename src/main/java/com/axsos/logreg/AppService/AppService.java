@@ -208,7 +208,8 @@ public class AppService {
     	return companyRepo.save(company);
     }
     
-    
+
+
     public Company editcomp(Company com) {
     	return companyRepo.save(com);
     }
