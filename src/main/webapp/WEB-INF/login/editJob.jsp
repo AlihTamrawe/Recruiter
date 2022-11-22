@@ -11,6 +11,23 @@
 <link rel="stylesheet" type="text/css" href="/css/createJob.css">
 <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
 </head>
+
+<style>
+.transparent-bg{
+	background: rgba(0, 0, 0, 0.5);
+    color: white;
+     border-radius: 25px;
+   
+   
+}
+
+.co{
+background-color: coral;
+}
+
+
+
+</style>
 <body>
 <nav class="navbar navbar-dark bg-dark">
   <a class="navbar-brand mar">FreeHire</a>
@@ -31,7 +48,11 @@
 
 <h1>Edit your job post</h1>
 
-	    <form:form action="/jobs/${service.id}/edit" method="post" modelAttribute="service" class="container">
+
+<div class=" d-flex justify-content-center " >
+<div class=" d-flex justify-content-center w-50 m-5 p-3 " >
+
+	    <form:form action="/jobs/${service.id}/edit" method="post" modelAttribute="service" class="container transparent-bg shadow-lg  p-5 flex-column ">
 	    	 <input type="hidden" name="_method" value="post">
 	    	 
 	        <div class="form-group col-md-6 break">
@@ -74,11 +95,11 @@
 			</div>
 	        <input  type="submit" value="Submit" type="button" class="btn btn-primary btn-lg btn-block">
 	    </form:form>
+	    </div>
+	    </div>
 
 
 
 
 </body>
 </html>
-
-

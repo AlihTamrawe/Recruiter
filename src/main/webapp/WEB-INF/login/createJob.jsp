@@ -8,57 +8,70 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>create a project</title>
-<link rel="stylesheet" type="text/css" href="/css/createJob.css">
+<link rel="stylesheet" type="text/css" href="/css/card.css">
 <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
 </head>
-<body>
+<style>
+.transparent-bg{
+	background: rgba(0, 0, 0, 0.5);
+    color: white;
+     border-radius: 25px;
+   
+   
+}
 
+.co{
+background-color: coral;
+}
+
+
+
+</style>
+<body>
 
 <nav class="navbar navbar-dark bg-dark">
   <a class="navbar-brand mar">FreeHire</a>
 <div>
-<a href="/" class="navbar-brand fs-6">About us</a>
-<a href="/projects/new" class="navbar-brand fs-6">Are you hiring?</a>
-<a href="/team" class="navbar-brand fs-6">Are you looking for a job?</a>
-<a href="/jobs/dashboard" class="navbar-brand fs-6">Available jobs</a>
-<a href="/create/company" class="navbar-brand fs-6">Create Company</a>
-
-<a href="/logout" class="navbar-brand fs-6">logout</a>
-
+<a class="navbar-brand fs-6">Services</a>
+<a class="navbar-brand fs-6">Are you hiring?</a>
+<a class="navbar-brand fs-6">Are you looking for a job?</a>
+<a class="navbar-brand fs-6">Available jobs</a>
 
 </div>
 </nav>
-<a href="/home" type="button" class="btn btn-outline-primary">Back</a>
 
 
-<h1>Create a job post</h1>
+<div class=" d-flex justify-content-center " >
+<div class=" d-flex justify-content-center w-50 m-5 p-3 " >
 
-	    <form:form action="/jobs/create" method="POST" modelAttribute="service" class="container">
-	    	
-	        <div class="form-group col-md-6 break">
-	            <form:label path="location"><strong>location</strong></form:label>
+
+	    <form:form action="/jobs/create" method="POST" modelAttribute="service" class="container transparent-bg shadow-lg  p-5 flex-column ">
+
+	    	<h2  class="form-group  text-center">Create A Job Post</h2>
+	        <div  class="form-group  m-3 ">
+	            <form:label path="location"><strong>Location:</strong></form:label>
 	            <form:errors path="location"/>
 	            <form:input type="text" path="location" class="form-control"/>
 	        </div>
 
-	        <div class="form-group col-md-6 break" class="break"> 
+	        <div class="form-group  m-3" class="break"> 
 	            <form:label path="description"><strong>Description:</strong></form:label>
 	            <form:errors path="description"/>
 	            <form:textarea path="description" rows="5" class="form-control"></form:textarea>
 	        </div>
 	        
-	        <div class="form-group col-md-6 break" class="break">
+	        <div  class="form-group  m-3" class="break">
 	            <form:label path="startingDate"><strong>Starting Date:</strong></form:label>
 	            <form:errors path="startingDate"/>
 	            <form:input type="date" path="startingDate" class="form-control"/>
 	        </div>
-	         <div class="form-group col-md-6 break" class="break">
+	         <div class="form-group  m-3" class="break">
 	            <form:label path="finishingDate"><strong>Finishing Date:</strong></form:label>
 	            <form:errors path="finishingDate"/>
 	            <form:input type="date" path="finishingDate" class="form-control"/>
 	        </div>
 	        
-	        <div class="form-group col-md-6 break" class="break">
+	        <div  class="form-group  m-3" class="break">
 	            <form:label path="specialization"><strong>Specialization:</strong></form:label>
 	            <form:errors path="specialization"/>
 	            <form:select path="specialization" id="specialization">
@@ -69,17 +82,19 @@
 				</form:select>
 	        </div>
 	        
-	        <div >
+	        <div  >
 				<form:errors path="owner" class="error"/>
 				<form:input type="hidden" path="owner" value="${user.id}"/>
 			</div>
-	        <input  type="submit" value="Submit" type="button" class="btn btn-primary btn-lg btn-block">
+	        <input  type="submit" value="Submit" type="button" class="btn btn-primary btn-lg btn-block m-3">
+	        
 	    </form:form>
+	    
+</div>
 
-
-
-
+</div>
 </body>
 </html>
+
 
 
