@@ -13,20 +13,6 @@
 </head>
 <body >
 
-<nav class="navbar navbar-dark bg-dark">
-  <a class="navbar-brand mar">FreeHire</a>
-<div>
-<a href="/" class="navbar-brand fs-6">About us</a>
-<a href="/projects/new" class="navbar-brand fs-6">Are you hiring?</a>
-<a href="/team" class="navbar-brand fs-6">Are you looking for a job?</a>
-<a href="/jobs/dashboard" class="navbar-brand fs-6">Available jobs</a>
-<a href="/create/company" class="navbar-brand fs-6">Create Company</a>
-
-<a href="/logout" class="navbar-brand fs-6">logout</a>
-
-
-</div>
-</nav>
 
 
 <nav class="navbar navbar-dark bg-dark">
@@ -43,24 +29,12 @@
 
 </div>
 </nav>
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
 
 <div class="rightbutton">
 <a href="/home" type="button" class="btn btn-outline-primary">Back</a>
 
 </div>
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
->>>>>>> 799c3c66c106ec0cf691e13b65693b640242c6bd
->>>>>>> Stashed changes
-=======
->>>>>>> 799c3c66c106ec0cf691e13b65693b640242c6bd
->>>>>>> Stashed changes
-   
+
 <div class="d-flex justify-content-center  ">
 
 <div class="d-flex justify-content-center card   m-5 w-50 p-3 shadow p-3 mb-5 bg-body rounded" >
