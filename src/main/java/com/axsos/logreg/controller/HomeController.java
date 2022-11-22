@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.axsos.logreg.AppService.AppService;
+import com.axsos.logreg.models.Company;
 import com.axsos.logreg.models.LoginUser;
 import com.axsos.logreg.models.Service;
 import com.axsos.logreg.models.User;
@@ -92,17 +93,18 @@ public class HomeController {
 
     }
     
-    
-    
-    @GetMapping("/home")
+   
+    @GetMapping("/jobs/dashboard")
     public String home(Model model, HttpSession session) {
         if (session.getAttribute("user_id") != null) {
         Long user_id = (Long) session.getAttribute("user_id");
         User thisUser = userServ.findUserById(user_id);
-        model.addAttribute("thisUser", thisUser);
+        model.addAttribute("user", thisUser);
+        model.addAttribute("companies", thisUser.getContractorcompanies());
+
         
         List<Service> service =userServ.allService();
-       
+        model.addAttribute("home",1);
         model.addAttribute("allServices", service);   
         return "/login/jobsDashboard.jsp";
     }
@@ -140,6 +142,33 @@ public class HomeController {
     
     
     
+    
+    //edit company
+    
+    
+    @GetMapping("/show/{id}")
+    public String editcompany(Model model,@PathVariable("id") Long id) {
+    
+        model.addAttribute("company", userServ.findCompanyById(id));
+        return "/login/editcompany.jsp";
+    }
+    @PostMapping("/show/edit/{id}")
+    public String edit(@PathVariable("id") Long id,Model model,@Valid @ModelAttribute("company") Company company, 
+            BindingResult result) {
+    	if(result.hasErrors()) {
+    		
+            return "/login/editcompany.jsp";
+
+    	}
+    	
+    	Company com = userServ.findCompanyById(id);
+    	com.setTitle(company.getTitle());
+        userServ.editcomp(com);
+        return "redirect:/create/company";
+        }
+    
+    
+    
     @GetMapping("/show/service")
     public String showservice(Model model) {
     
@@ -160,29 +189,29 @@ public class HomeController {
         return "redirect:/home";
     }
     
-    @GetMapping("/services/{id}/apply")
-    public String applyforservice( @PathVariable("id") Long id, Model model, HttpSession session) {
+    @PostMapping("/services/{id}/apply")
+    public String applyforservice( @RequestParam("company")Long id2,@PathVariable("id") Long id, Model model, HttpSession session) {
     	
     	   if (session.getAttribute("user_id") != null) {
     	        Long user_id = (Long) session.getAttribute("user_id");
     	        User thisUser = userServ.findUserById(user_id);
     	        
-    	
+    	Company comp = userServ.findCompanyById(id2);
         
-        User ser = userServ.joinService(userServ.findService(id),thisUser).getOwner();
+        User ser = userServ.joinService(userServ.findService(id),comp).getOwner();
 
 		SimpleMailMessage sm = new SimpleMailMessage();
 		sm.setFrom("aazzoqa@gmail.com");
 		sm.setTo(ser.getEmail());
 		sm.setSubject("Welcome to Java SpringBoot Application");
-		sm.setText("Welcome Mr. : "+thisUser.getFirstName() +"\n\n   .");
+		sm.setText("Hi \n\n Mr. : "+thisUser.getFirstName() +"\n\n   has Applied your Job  .");
 		javaMailSender.send(sm);
 		 System.out.println(generateResponse("Email Sent to the mail "+thisUser.getEmail(), HttpStatus.OK, thisUser)); 
         
     	
     	   }
     	   
-    	      return "redirect:/home";
+    	      return "redirect:/jobs/dashboard";
 
   }
     @GetMapping("/services/{id}/unjoin")
@@ -193,23 +222,232 @@ public class HomeController {
     	        User thisUser = userServ.findUserById(user_id);
     	        
     	
-        userServ.unjoinService(userServ.findService(id),thisUser);
-        
+        User ser =userServ.unjoinService(userServ.findService(id),thisUser).getOwner();
+        SimpleMailMessage sm = new SimpleMailMessage();
+		sm.setFrom("aazzoqa@gmail.com");
+		sm.setTo(ser.getEmail());
+		sm.setSubject("Welcome to Java SpringBoot Application");
+		sm.setText("Hi \n\n Mr. : "+thisUser.getFirstName() +"\n\n   has dismiss your Job  .");
+		javaMailSender.send(sm);
+		 System.out.println(generateResponse("Email Sent to the mail "+thisUser.getEmail(), HttpStatus.OK, thisUser)); 
+       
     	
     	   }
     	   
-    	      return "redirect:/home";
+ 	      return "redirect:/jobs/dashboard";
 
   }
     
     
+    
+    /// Adding Employee
+    
     @GetMapping("/team")
-    public String teams(Model model) {
+    public String teams(Model model, HttpSession session) {
     	
-    	
-        model.addAttribute("services", userServ.allService());
-        return "showservice.jsp";
+        model.addAttribute("companies", userServ.allcompany());
+
+    	  if (session.getAttribute("user_id") != null) {
+  	        Long user_id = (Long) session.getAttribute("user_id");
+  	        User thisUser = userServ.findUserById(user_id);
+  	        
+        model.addAttribute("companies", userServ.allcompany());
+        model.addAttribute("user", thisUser);
+
+        
+    	  }
+        return "/login/viewCompany.jsp";
     }
+    @PostMapping("/company/add")
+    public String addEployees(Model model, HttpSession session,@RequestParam("company")Long id ) {
+    	
+
+    	  if (session.getAttribute("user_id") != null) {
+    		  
+  	        Long user_id = (Long) session.getAttribute("user_id");
+  	        User thisUser = userServ.findUserById(user_id);
+  	        
+  	        Company com = userServ.findCompanyById(id);
+  	        userServ.addEmployeetocompany(com, thisUser);
+  	        
+        
+    	  }
+        return "redirect:/team";
+    }
+    
+    @GetMapping("/getout/{id}")
+    public String getoutofcompany(@PathVariable("id") Long id,Model model, HttpSession session) {
+    	
+        model.addAttribute("companies", userServ.allcompany());
+
+    	  if (session.getAttribute("user_id") != null) {
+  	        Long user_id = (Long) session.getAttribute("user_id");
+  	        User thisUser = userServ.findUserById(user_id);
+  	      Company com = userServ.findCompanyById(id);
+	        userServ.getoutEmployeetocompany(com, thisUser);
+        
+    	  }
+          return "redirect:/team";
+    }
+    
+    
+    
+    //home
+    
+    @GetMapping("/home")
+    public String ownerdashboard(Model model, HttpSession session) {
+    	 if (session.getAttribute("user_id") != null) {
+    	        Long user_id = (Long) session.getAttribute("user_id");
+    	        User thisUser = userServ.findUserById(user_id);
+    	        model.addAttribute("thisUser", thisUser);
+    	        model.addAttribute("home",1);
+
+    	        model.addAttribute("user",thisUser);
+    	        
+    	        model.addAttribute("ownerServices", thisUser.getServices());
+    	        return "/login/ownerDashboard.jsp";
+    	    }
+    	        else {
+    	            return "redirect:/";
+    	        }
+    	
+    	 
+
+    }
+    
+    @GetMapping("/user/card/{id}")
+ public String carduser(Model model,@PathVariable("id") Long id, HttpSession session) {
+    	
+        User serUser = userServ.findUserById(id);
+     
+        
+        model.addAttribute("user", serUser);
+        return "/login/showcard.jsp";
+    }
+    
+    @GetMapping("/owner/dash/{id}")
+    public String owner(Model model,@PathVariable("id") Long id, HttpSession session) {
+    	
+        User serUser = userServ.findUserById(id);
+        Long user_id = (Long) session.getAttribute("user_id");
+        User thisUser = userServ.findUserById(user_id);
+        
+        model.addAttribute("user",thisUser);
+        
+        model.addAttribute("ownerServices", serUser.getServices());
+        return "/login/ownerDashboard.jsp";
+    }
+    
+   
+    @GetMapping("/create/company")
+    public String newcompany(Model model, @ModelAttribute("company") Company company
+           , HttpSession session) {
+    	
+    	model.addAttribute("companies", userServ.allcompany());
+    
+        return "/login/createcompany.jsp";
+
+    }
+    
+    @PostMapping("/company")
+    public String createcompany(Model model,@Valid @ModelAttribute("company") Company company
+           , BindingResult result, HttpSession session) {
+    	
+    	model.addAttribute("companies", userServ.allcompany());
+
+    	if (session.getAttribute("user_id") != null) {
+    		
+    		if(result.hasErrors()) {
+    	        return "/login/createcompany.jsp";
+
+    		}else {
+	        Long user_id = (Long) session.getAttribute("user_id");
+	        User thisUser = userServ.findUserById(user_id);
+	        company.setContractor(thisUser);
+	        userServ.createcom(company);
+    		}
+        
+    	}
+
+
+        return "redirect:/create/company";
+
+    }
+    
+    
+    @GetMapping("/delete/{id}")
+    public String deletecompany(@PathVariable("id") Long id) {
+    	
+    	userServ.deletecompany(userServ.findCompanyById(id));
+    	
+        return "redirect:/create/company";
+
+    }
+    @GetMapping("/service/delete/{id}")
+    public String finishService(@PathVariable("id") Long id) {
+    	
+    	Service ser =userServ.findService(id);
+    	userServ.deleteService(ser);
+        return "redirect:/rating/"+id;
+
+    }
+    @GetMapping("/rating/{id}")
+    public String rating(@PathVariable("id") Long id,Model model) {
+    	
+    	model.addAttribute("service", userServ.findService(id));
+        return "/login/contractorRating.jsp";
+
+    }
+    @PostMapping("/job/rating/{id}")
+    public String rate(@RequestParam("rate")Integer rate ,@PathVariable("id") Long id,Model model) {
+    	 Service ser = userServ.findService(id);
+    	 ser.setOwnerRating(rate);
+    	 userServ.rateService(ser);
+         return "redirect:/home";
+
+    }
+    
+    
+    
+    
+    
+    
+    
+    @GetMapping("/company/team/add")
+    public String addingtoTeam(Model model) {
+    	
+        return "/login/addteam.jsp";
+
+    }
+    @GetMapping("/company/team/{id}")
+    public String addingintoTeam(@RequestParam("user")Long id2,@PathVariable("id") Long id,Model model) {
+    	
+//    	userServ.addToteam();
+        return "/login/addteam.jsp";
+
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     

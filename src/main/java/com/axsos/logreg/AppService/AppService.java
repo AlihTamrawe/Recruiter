@@ -140,16 +140,10 @@ public class AppService {
     	
     	return serviceRepo.findById(id).get();
     }
-  public com.axsos.logreg.models.Service joinService(com.axsos.logreg.models.Service service,User user) {
+  public com.axsos.logreg.models.Service joinService(com.axsos.logreg.models.Service service,Company comp) {
     	
-	  List<Company> listcom = user.getContractorcompanies();
-	  Company co = new Company();
-	  co.setContractor(user);
-	 
-	  listcom.add(companyRepo.save(co));
-	  user.setContractorcompanies(listcom);
-	  user =userRepo.save(user);
-	  service.setCompany(user.getContractorcompanies().get(0));
+	
+	  service.setCompany(comp);
 	  
     	return serviceRepo.save(service);
     }
@@ -177,4 +171,46 @@ public class AppService {
     public List<com.axsos.logreg.models.Service> allService() {
     	return serviceRepo.findAll();
     }
+    
+    public List<Company> allcompany(){
+    	return companyRepo.findAll();
+    }
+    public void deletecompany(Company company){
+    	companyRepo.delete(company);
+    }
+    public void deleteService(com.axsos.logreg.models.Service ser){
+    	ser.setStatus(false);
+    	serviceRepo.save(ser);
+    }
+    public com.axsos.logreg.models.Service rateService(com.axsos.logreg.models.Service ser){
+
+    	return serviceRepo.save(ser);
+    	
+    }
+    
+    public Company addEmployeetocompany(Company company,User user){
+    	List<User> us = company.getEmployees();
+    	if(us.contains(user)){
+    		return null;
+    	}
+    	us.add(user);
+    	company.setEmployees(us);
+    	return companyRepo.save(company);
+    }
+    public Company getoutEmployeetocompany(Company company,User user){
+    	List<User> us = company.getEmployees();
+    	if(us.contains(user)){
+    		us.remove(user);
+    		
+    	}
+    
+    	company.setEmployees(us);
+    	return companyRepo.save(company);
+    }
+    
+    
+    public Company editcomp(Company com) {
+    	return companyRepo.save(com);
+    }
+    
 }
