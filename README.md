@@ -4,11 +4,11 @@ This application targets workers (construction workers, technicians, contractors
 
 ## Table of Contents
 
-1. [ About the project ] (#about-the-project)
-2. [ Features ] (#features)
-4. [ Pages ] (#pages)
-6. [ Used technologies ] (#used-technologies)
-7. [ Team members ] (#team-members)
+1.  About the project 
+2.  Features  
+4.  Pages 
+6.  Used technologies  
+7.  Team members  
 
 
 
@@ -33,28 +33,33 @@ Validation was used on all project forms to make sure the user is providing the 
 
 ## Templates of the first application
 - About us page: This page displays information about the application goal and the team who worked on creating it.
-![image]("https://i.imgur.com/7j4rUpC.png")
+![About us](https://user-images.githubusercontent.com/110819077/203492789-98b22a6c-4a4b-4bd0-99b5-7e81d8bd7f78.PNG)
 
 - Login and Registration page: This page allows users to log in and register in the application.
- ![image]("https://i.imgur.com/gRPbnSE.png")
+ ![register](https://user-images.githubusercontent.com/110819077/203492982-c255b045-d9e3-49b7-a79a-4fa3de034bbb.PNG)
 
 - Create a job page: This page is user for the workshops owners to post their job vacancies.
-![image]("https://i.imgur.com/i6FJlKo.png")
+![create_job_form](https://user-images.githubusercontent.com/110819077/203493289-7240cc28-ecca-4ce3-8cd1-ebfd2a9ee0cd.png)
+
 
 - Owner's dashboard page: This page is customized for the workshop owner to display the job posts he added to the application, and displays the ability to terminate the contract with the worker after delivering the services.
-![image]("https://i.imgur.com/ouKbGoJ.png")
+![owner's jobs dashboard](https://user-images.githubusercontent.com/110819077/203493326-47fecc33-b201-4a5f-ba6f-be58eb385d7d.PNG)
 
 - Display jobs dashboard page: It displays all the job posts by all workshops owners. And for the job seekers, they have the option to apply for the listed jobs.
-![image]("https://i.imgur.com/Cp98Tsi.png")
+![jobs-dashboard](https://user-images.githubusercontent.com/110819077/203493376-1b896e40-1347-4f08-9de3-38498630f39b.PNG)
+
 
 - Job seeker card page: This page displays the applicant's information.
-![image]("https://i.imgur.com/mdTHB4z.png")
+![job-seeker-card](https://user-images.githubusercontent.com/110819077/203493421-b7c68ec0-f22c-42ac-920a-f992e32c8745.png)
+
 
 - Contractor and owner rating page: This page allows both parties to rate each other after terminating  work contract.
-![image]("https://i.imgur.com/2KnAcFt.png")
+![rating](https://user-images.githubusercontent.com/110819077/203493473-1722e464-20c8-4dcd-a80e-b3dec2ba34e8.png)
+
 
 - Create company page: This page is for job seekers who would like to create their own team or company to work together.
-![image]("https://i.imgur.com/cjdYRQn.png")
+![createcompany](https://user-images.githubusercontent.com/110819077/203493538-3a7bf325-ff9b-4be6-80ca-fca1d4e725e5.png)
+
 
 
 
