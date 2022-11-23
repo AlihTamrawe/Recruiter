@@ -46,7 +46,7 @@ background-color: coral;
 <a href="/home" type="button" class="btn btn-outline-primary">Back</a>
 
 
-<h1>Edit your job post</h1>
+
 
 
 <div class=" d-flex justify-content-center " >
@@ -54,7 +54,7 @@ background-color: coral;
 
 	    <form:form action="/jobs/${service.id}/edit" method="post" modelAttribute="service" class="container transparent-bg shadow-lg  p-5 flex-column ">
 	    	 <input type="hidden" name="_method" value="post">
-	    	 
+	    	 <h2  class="form-group  text-center">Edit your job post</h2>
 	        <div class="form-group col-md-6 break">
 	            <form:label path="location"><strong>location</strong></form:label>
 	            <form:errors path="location"/>

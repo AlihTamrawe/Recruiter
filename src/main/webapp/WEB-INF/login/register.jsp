@@ -89,7 +89,7 @@
 			<div class="card-footer">
 				<div class="d-flex justify-content-center links color">
 					already have an account?
-					<div><a href="/Regpage" class="color">log in</a></div>
+					<div><a href="/loginpage" class="color">log in</a></div>
 				</div>
 				
 			</div>
