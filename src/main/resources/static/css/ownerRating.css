@@ -1,0 +1,113 @@
+.rating {
+    float:left;
+    margin-right: 20px;
+
+  }
+
+  /* :not(:checked) is a filter, so that browsers that don’t support :checked don’t 
+    follow these rules. Every browser that supports :checked also supports :not(), so
+    it doesn’t make the test unnecessarily selective */
+  .rating:not(:checked) > input {
+      position:absolute;
+      top:-9999px;
+      clip:rect(0,0,0,0);
+  }
+
+  .rating:not(:checked) > label {
+      float:right;
+      width:1em;
+      /* padding:0 .1em; */
+      overflow:hidden;
+      white-space:nowrap;
+      cursor:pointer;
+      font-size:300%;
+      /* line-height:1.2; */
+      color:#e2e7a0;
+  }
+
+  .rating:not(:checked) > label:before {
+      content: '★ ';
+  }
+
+  .rating > input:checked ~ label {
+      color: #E55B13;
+      
+  }
+
+  .rating:not(:checked) > label:hover,
+  .rating:not(:checked) > label:hover ~ label {
+      color: #ffc929;
+      
+  }
+
+  .rating > input:checked + label:hover,
+  .rating > input:checked + label:hover ~ label,
+  .rating > input:checked ~ label:hover,
+  .rating > input:checked ~ label:hover ~ label,
+  .rating > label:hover ~ input:checked ~ label {
+      color: dodgerblue;
+      
+  }
+
+  .rating > label:active {
+      position:relative;
+      top:2px;
+      left:2px;
+  }
+  
+.blockquote-custom {
+  position: relative;
+  font-size: 1.1rem;
+}
+
+.blockquote-custom-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: -25px;
+  left: 50px;
+}
+
+h3 {
+	text-align: center;
+	margin: 20px;
+	font-family: "Times New Roman", Times, serif;
+}
+
+.shad {
+	box-shadow: 5px 10px 10px 5px #FFC312;
+
+}
+
+.mar {
+	margin-left: 120px;
+
+	color:#FFC312 !important;
+}
+
+.h {
+	margin: 20px;
+}
+
+.rightbutton {
+	float: right;
+	margin-right: 50px;
+}
+.bn {
+	margin-left: 300px;
+}
+
+.rate {
+	text-align: center;
+	margin-bottom: 10px;
+}
+
+.ri {
+	float: left;
+
+}
+

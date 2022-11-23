@@ -338,7 +338,7 @@ public class HomeController {
         return "/login/ownerDashboard.jsp";
     }
     
-   
+    
     @GetMapping("/create/company")
     public String newcompany(Model model, @ModelAttribute("company") Company company
            , HttpSession session) {
@@ -399,9 +399,9 @@ public class HomeController {
 
     }
     @PostMapping("/job/rating/{id}")
-    public String rate(@RequestParam("rate")Integer rate ,@PathVariable("id") Long id,Model model) {
+    public String rate(@RequestParam("rate")String rate ,@PathVariable("id") Long id,Model model) {
     	 Service ser = userServ.findService(id);
-    	 ser.setOwnerRating(rate);
+    	 ser.setOwnerRating(Integer.parseInt(rate) );
     	 userServ.rateService(ser);
          return "redirect:/home";
 

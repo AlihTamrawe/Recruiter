@@ -48,18 +48,16 @@
                 	<form action="/job/rating/${service.id}" method="post" class="container">
                 	<div class="rate fs-4 fw-bold">
                 	</div>
-                	<div>
-                	<input type="number" name="rate"></input>
-                	</div>
+
                 	
          <div class="ri">
         <div class="row">
         <div class="rating ri">
-          <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="Rocks!">5 stars</label>
-          <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="Rocks!">4 stars</label>
-          <input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="Pretty good">3 stars</label>
-          <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="Pretty good">2 stars</label>
-          <input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="Meh">1 star</label>
+          <input type="radio" id="star1" name="rate" value="5" /><label for="star1" title="Rocks!">5 stars</label>
+          <input type="radio" id="star2" name="rate" value="4" /><label for="star2" title="Rocks!">4 stars</label>
+          <input type="radio" id="star3" name="rate" value="3" /><label for="star3" title="Pretty good">3 stars</label>
+          <input type="radio" id="star4" name="rate" value="2" /><label for="star4" title="Pretty good">2 stars</label>
+          <input type="radio" id="star5" name="rate" value="1" /><label for="star5" title="Meh">1 star</label>
 
         </div>
         </div>
@@ -78,6 +76,7 @@
 
 
 
+<script type="text/javascript" src="js/app.js"></script>
 
 </body>
 </html>
